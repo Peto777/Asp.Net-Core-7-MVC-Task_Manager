@@ -1,0 +1,160 @@
+﻿body {
+    background-color: #c8c8c8;
+}
+
+/* Style table header */
+.table th {
+    padding: 12px;
+    text-align: left;
+    background-color: #f9a825; /* Material yellow */
+    color: #000000; /* White text */
+    border-bottom: 2px solid #d1d1d1; /* Bottom border */
+    border-radius: 4px;
+}
+
+/* Style table rows */
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #d1d1d1; /* Bottom border */
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+     --bs-table-accent-bg: none; 
+     color: none; 
+}
+
+.table td {
+    padding: 12px;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* Link styles */
+a {
+    color: #278617;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+    a:hover {
+        color: #1565c0; /* Darker blue on hover */
+    }
+
+/* Header styles */
+.title {
+    color: #000000;
+    text-align: center;
+    margin: 50px auto;
+    font-size: 60px;
+    background-color: #017fe0b0;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+/* Create New link style */
+.create-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-info, .btn-success, .btn-danger {
+    margin: 2px;
+}
+
+.create-text {
+    text-align: center;
+}
+
+.create-hl {
+    padding: 8px;
+    margin-top: 10px;
+    margin: 14px;
+    font-size: 20px;
+    color: #000000;
+    background-color: #009b21;
+    border-radius: 5px;
+}
+
+.create-hl:hover {
+    color: #000000;
+    background-color: #ff6a00;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Väčšia zmena farby pri hover efekte */
+.btn:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+/* Apply styles to the delete form */
+.delete-form {
+    margin: 40px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+
+    /* Style the form elements */
+    .delete-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .delete-form h3 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .delete-form .row {
+        margin-bottom: 20px;
+    }
+
+    .delete-form dt {
+        font-weight: bold;
+    }
+
+    .delete-form dd {
+        margin-left: 0;
+    }
+
+    .delete-form .btn-danger {
+        margin-right: 10px;
+    }
+
+.task-text {
+    overflow-wrap: break-word; /* Enable word wrapping */
+    word-wrap: break-word; /* For older browser compatibility */
+}
+
+
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #e3e3e3;
+}
+
+@media screen and (max-width: 400px) {
+    .title {
+        max-width: 100%;
+        font-size: 40px;
+        /*padding: 10px;*/
+        margin: 20px auto;
+    }
+}

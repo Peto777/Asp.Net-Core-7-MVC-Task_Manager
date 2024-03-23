@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TaskManager.Models.TaskManagerModels>
+
+@{
+    ViewData["Title"] = "Task Manager";
+    Func<string, string> getIconFileName = ViewBag.GetIconFileName;
+}
+
+
+<h1 class="title">Task Manager</h1>
+
+<div class="container">
+    <p class="create-text">
+        <a asp-action="Create" class="create-hl">New task or post</a>
+    </p>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadedFile)
+            </th>
+            <th>
+                Task
+            </th>
+            <th>
+                Notes
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.FilePath))
+                    {
+                        string fileType = System.IO.Path.GetExtension(item.FilePath);
+                        string iconFileName = getIconFileName(fileType);
+
+                        if (fileType.ToLower() == ".jpg" || fileType.ToLower() == ".jpeg" || fileType.ToLower() == ".png" || fileType.ToLower() == ".gif")
+                        {
+                            <img src="@Url.Content(item.FilePath)" alt="Image" style="max-height: 70px; max-width: 70px;" />
+                        }
+                        else
+                        {
+                            <img src="~/images/@iconFileName" alt="File Icon" style="max-height: 70px; max-width: 70px;" />
+                        }
+                        <a href="@Url.Action("DownloadFile", "TaskManager", new { id = item.Id })"> Download</a>
+                    }
+                </td>
+                <td>
+                    <input type="text" class="form-control" value="@item.Task" />
+                </td>
+                <td>
+                    <input type="text" class="form-control" value="@item.Notes" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

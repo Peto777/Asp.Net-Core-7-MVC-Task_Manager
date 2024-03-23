@@ -1,0 +1,83 @@
+﻿@model TaskManager.Models.TaskManagerModels
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@functions {
+    // Define the GetIcon method
+    string GetIcon(string fileType)
+    {
+        switch (fileType.ToLower())
+        {
+            case ".pdf":
+                return "pdf-icon.png";
+            case ".txt":
+                return "txt-icon.png";
+            default:
+                return "default-icon.png";
+        }
+    }
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TaskManagerModels</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Task)
+        </dt>
+        <dd class="col-sm-10 task-text">
+            <!-- Apply class for text wrapping -->
+            @Html.DisplayFor(model => model.Task)
+        </dd>
+        <dt class="col-sm-2 task-text">
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt class="col-sm-2">
+            Image
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.FilePath))
+            {
+                string fileType = System.IO.Path.GetExtension(Model.FilePath);
+                if (fileType.ToLower() == ".jpg" || fileType.ToLower() == ".jpeg" || fileType.ToLower() == ".png" || fileType.ToLower() == ".gif")
+                {
+                            <img src="@Url.Content(Model.FilePath)" alt="Image" style="max-height: 70px; max-width: 70px;" />
+                }
+                else
+                {
+                            <img src="~/images/@GetIcon(fileType)" alt="File Icon" style="max-height: 70px; max-width: 70px;" />
+                }
+
+                    <a href="@Url.Action("DownloadFile", "TaskManager", new { id = Model.Id })"> Download</a>
+            }
+        </dd>
+    </dl>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="col-sm-6 text-right">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+<br />
